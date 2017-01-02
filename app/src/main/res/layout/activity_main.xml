@@ -10,4 +10,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="aviadapps.getfood.MainActivity">
 
+    <Button
+        android:text="Fragment1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:onClick="fragmentChange"
+        android:layout_weight="1" />
+
+    <Button
+        android:text="Fragment2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:onClick="fragmentChange"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/fragmentPlace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="aviadapps.getfood.userFragment"></fragment>
+
 </LinearLayout>
