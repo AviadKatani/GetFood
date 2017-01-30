@@ -5,30 +5,27 @@ package aviadapps.getfood;
  */
 
 public class User {
-    private int id;
     private String name;
-    private String address;
+    private int phone;
     private String userName;
     private String userPassword;
 
     public User() {
     }
 
-    public User(int id, String name, String address, String userName, String userPassword) {
-        this.id = id;
+    public User(String name, int phone, String userName, String userPassword) {
         this.name = name;
-        this.address = address;
+        this.phone = phone;
         this.userName = userName;
         this.userPassword = userPassword;
     }
-    public void setId(int id) {
-        this.id = id;
-    }
+
+
     public void setName(String name) {
         this.name = name;
     }
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
     public void setUserName(String userName) {
         this.userName = userName;
@@ -36,18 +33,13 @@ public class User {
     public void setUserPassword(String password) {
         this.userPassword = password;
     }
-    public int getId() {
-        return id;
-    }
     public String getName() {
         return name;
     }
-    public String getAddress() {
-        return address;
+    public int getPhone() {
+        return phone;
     }
-    public String getUserName() {
-        return userName;
-    }
+    public String getUserName() {return userName; }
     public String getUserPassword() {
         return userPassword;
     }

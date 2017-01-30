@@ -18,7 +18,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".ConfirmationActivity" />
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

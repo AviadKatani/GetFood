@@ -16,7 +16,7 @@ public class HelperDB extends SQLiteOpenHelper {
     public static final String KEY_NAME = "Name";
     public static final String KEY_USER = "User Name";
     public static final String KEY_PASSWORD = "Password";
-    public static final String KEY_ADDRESS = "Address";
+    public static final String KEY_PHONE = "Address";
 
     private String strCreate, strDelete;
 
@@ -30,7 +30,7 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
         strCreate += KEY_NAME + " TEXT, ";
         strCreate += KEY_USER + " TEXT, ";
-        strCreate += KEY_ADDRESS + " TEXT, ";
+        strCreate += KEY_PHONE + " TEXT, ";
         strCreate += KEY_PASSWORD + " TEXT";
         strCreate += ");";
 
@@ -49,7 +49,7 @@ public class HelperDB extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, user.getName());
         values.put(KEY_USER, user.getUserName());
-        values.put(KEY_ADDRESS, user.getAddress());
+        values.put(KEY_PHONE, user.getPhone());
         // Insert to database
         db.insert(TABLE_USERS, null, values);
         db.close();
@@ -59,14 +59,14 @@ public class HelperDB extends SQLiteOpenHelper {
     public User getUser(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, new String[] { KEY_ID,
-                KEY_NAME, KEY_USER, KEY_ADDRESS, KEY_PASSWORD},
+                KEY_NAME, KEY_USER, KEY_PHONE, KEY_PASSWORD},
                 KEY_ID + "=?",
                 new String[] {String.valueOf(id)}, null, null, null, null);
         if(cursor != null)
             cursor.moveToFirst();
         // Calling the user class constructor to create the user, then return it.
-        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                cursor.getString(2), cursor.getString(3),cursor.getString(4));
+        User user = new User(cursor.getString(0),
+                Integer.parseInt(cursor.getString(1)), cursor.getString(2),cursor.getString(3));
         return user;
     }
 
@@ -82,7 +82,7 @@ public class HelperDB extends SQLiteOpenHelper {
     // This method requires a user as parameter and delete it's entry in the Database.
     public void deleteUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USERS, KEY_ID + " = ?", new String[] {String.valueOf(user.getId())});
+        db.delete(TABLE_USERS, KEY_ID + " = ?", new String[] {String.valueOf(user.getUserName())});
         db.close();
     }
 }

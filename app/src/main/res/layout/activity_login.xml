@@ -86,7 +86,7 @@
 
             <TextView
                 android:text="Sign up now!"
-                android:onClick="registerUser"
+                android:onClick="moveToRegister"
                 android:textColor="#FFFFFF"
                 android:textAlignment="viewEnd"
                 android:layout_gravity="end"

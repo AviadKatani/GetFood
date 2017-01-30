@@ -1,5 +1,6 @@
 package aviadapps.getfood;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,9 @@ public class LoginActivity extends AppCompatActivity {
         // TODO: Move to a fragment / Activity that sends the user info to email.
     }
 
-    public void registerUser(View view) {
+    public void moveToRegister(View view) {
         // TODO: Move to a fragment / Activity that asks user for personal details and then send a database query to register new user.
+        Intent moveIntent = new Intent(this, RegisterActivity.class);
+        startActivity(moveIntent);
     }
 }
