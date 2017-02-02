@@ -5,6 +5,7 @@ package aviadapps.getfood;
  */
 
 public class User {
+    private int id;
     private String name;
     private int phone;
     private String userName;
@@ -13,7 +14,8 @@ public class User {
     public User() {
     }
 
-    public User(String name, int phone, String userName, String userPassword) {
+    public User(int id, String name, int phone, String userName, String userPassword) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.userName = userName;
@@ -21,6 +23,9 @@ public class User {
     }
 
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setName(String name) {
         this.name = name;
     }
@@ -32,6 +37,9 @@ public class User {
     }
     public void setUserPassword(String password) {
         this.userPassword = password;
+    }
+    public int getId() {
+        return id;
     }
     public String getName() {
         return name;

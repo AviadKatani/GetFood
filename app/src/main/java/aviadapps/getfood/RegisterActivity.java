@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         phone = Integer.parseInt(phoneET.getText().toString());
         // TODO: Check the info provided by user
         HelperDB db = new HelperDB(this);
-        User createUser = new User(name, phone, user, password);
+        User createUser = new User(0, name, phone, user, password);
         db.addUser(createUser);
     }
 }

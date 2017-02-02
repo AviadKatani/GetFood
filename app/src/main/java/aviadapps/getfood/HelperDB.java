@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HelperDB extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
@@ -65,8 +68,8 @@ public class HelperDB extends SQLiteOpenHelper {
         if(cursor != null)
             cursor.moveToFirst();
         // Calling the user class constructor to create the user, then return it.
-        User user = new User(cursor.getString(0),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2),cursor.getString(3));
+        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
+                Integer.parseInt(cursor.getString(2)), cursor.getString(3),cursor.getString(4));
         return user;
     }
 
@@ -84,5 +87,26 @@ public class HelperDB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_USERS, KEY_ID + " = ?", new String[] {String.valueOf(user.getUserName())});
         db.close();
+    }
+
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<User>();
+
+        String query = "SELECT * FROM" + TABLE_USERS;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()) {
+            do {
+                User user = new User();
+                user.setId(Integer.parseInt(cursor.getString(0)));
+                user.setName(cursor.getString(1));
+                user.setUserName(cursor.getString(2));
+                user.setPhone(Integer.parseInt(cursor.getString(3)));
+                user.setUserPassword(cursor.getString(4));
+                userList.add(user);
+            }
+            while (cursor.moveToNext());
+        }
+        return userList;
     }
 }
