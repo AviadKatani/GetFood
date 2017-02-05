@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -34,5 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
         HelperDB db = new HelperDB(this);
         User createUser = new User(0, name, phone, user, password);
         db.addUser(createUser);
+        Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
     }
 }

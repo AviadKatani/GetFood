@@ -29,13 +29,12 @@ public class HelperDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        strCreate = "CREATE TABLE " + TABLE_USERS;
-        strCreate += " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        strCreate = "CREATE TABLE " + TABLE_USERS + "(";
+        strCreate += KEY_ID + " NUMBER PRIMARY KEY AUTOINCREMENT ,";
         strCreate += KEY_NAME + " TEXT, ";
         strCreate += KEY_USER + " TEXT, ";
         strCreate += KEY_PHONE + " TEXT, ";
-        strCreate += KEY_PASSWORD + " TEXT";
-        strCreate += ");";
+        strCreate += KEY_PASSWORD + " TEXT" + ")";
 
         db.execSQL(strCreate); // Database created.
     }
