@@ -19,7 +19,7 @@ public class HelperDB extends SQLiteOpenHelper {
     public static final String KEY_NAME = "Name";
     public static final String KEY_USER = "User Name";
     public static final String KEY_PASSWORD = "Password";
-    public static final String KEY_PHONE = "Address";
+    public static final String KEY_PHONE = "Phone";
 
     private String strCreate, strDelete;
 
