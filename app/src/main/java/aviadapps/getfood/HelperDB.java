@@ -11,6 +11,7 @@ import java.util.List;
 
 public class HelperDB extends SQLiteOpenHelper {
 
+    SQLiteDatabase db;
     public static final int DATABASE_VERSION = 1;
     public static final String DB_NAME = "userdb.db"; // Database file name
     public static final String TABLE_USERS = "Users";
@@ -47,7 +48,7 @@ public class HelperDB extends SQLiteOpenHelper {
     }
 
     public void addUser(User user) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, user.getName());
         values.put(KEY_PASSWORD, user.getUserPassword());
@@ -60,7 +61,7 @@ public class HelperDB extends SQLiteOpenHelper {
 
     // This method requires a user id as parameter and returns the User credentials.
     public User getUser(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, new String[] { KEY_ID,
                 KEY_NAME, KEY_USER, KEY_PHONE, KEY_PASSWORD},
                 KEY_ID + "=?",
@@ -76,7 +77,7 @@ public class HelperDB extends SQLiteOpenHelper {
     // This method returns the number of users in the Database.
     public int getUserCount() {
         String countQuery = "SELECT * FROM" + TABLE_USERS;
-        SQLiteDatabase db = this.getReadableDatabase();
+        db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
         return cursor.getCount();
@@ -84,7 +85,7 @@ public class HelperDB extends SQLiteOpenHelper {
 
     // This method requires a user as parameter and delete it's entry in the Database.
     public void deleteUser(User user) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         db.delete(TABLE_USERS, KEY_ID + " = ?", new String[] {String.valueOf(user.getUserName())});
         db.close();
     }
@@ -93,7 +94,7 @@ public class HelperDB extends SQLiteOpenHelper {
         List<User> userList = new ArrayList<User>();
 
         String query = "SELECT * FROM" + TABLE_USERS;
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.moveToFirst()) {
             do {
@@ -108,5 +109,25 @@ public class HelperDB extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         return userList;
+    }
+
+    public String searchPass(String userName) {
+        db = this.getReadableDatabase();
+        String query = "select UserName, Password from " + TABLE_USERS;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "Not found";
+        if(cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if(a.equals(userName)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }
+            while(cursor.moveToNext());
+        }
+        return b;
     }
 }

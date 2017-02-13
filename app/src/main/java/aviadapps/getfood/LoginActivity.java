@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
+    HelperDB db = new HelperDB(this);
+    EditText userName, userPassword;
+    String user, pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,9 +20,25 @@ public class LoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        userName = (EditText) findViewById(R.id.etUsername);
+        userPassword = (EditText) findViewById(R.id.etUserpass);
     }
 
     public void loginClicked(View view) {
+        user = userName.getText().toString();
+        pass = userPassword.getText().toString();
+
+        String password = db.searchPass(user);
+        if(pass.equals(password)) {
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            i.putExtra("Username", user);
+            startActivity(i);
+        }
+        else {
+            Toast.makeText(this, "Username and password doesn't match!", Toast.LENGTH_LONG).show();
+        }
+
         // TODO: Parse user info, check it on DB.
     }
 
