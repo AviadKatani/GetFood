@@ -17,7 +17,7 @@ public class HelperDB extends SQLiteOpenHelper {
     // All of the database keys:
     private static final String KEY_ID = "_id";
     public static final String KEY_NAME = "Name";
-    public static final String KEY_USER = "User Name";
+    public static final String KEY_USER = "UserName";
     public static final String KEY_PASSWORD = "Password";
     public static final String KEY_PHONE = "Phone";
 
@@ -50,6 +50,7 @@ public class HelperDB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, user.getName());
+        values.put(KEY_PASSWORD, user.getUserPassword());
         values.put(KEY_USER, user.getUserName());
         values.put(KEY_PHONE, user.getPhone());
         // Insert to database
