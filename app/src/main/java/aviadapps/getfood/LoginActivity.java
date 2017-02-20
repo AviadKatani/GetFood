@@ -26,20 +26,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginClicked(View view) {
-        user = userName.getText().toString();
-        pass = userPassword.getText().toString();
-
-        String password = db.searchPass(user);
-        if(pass.equals(password)) {
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            i.putExtra("Username", user);
-            startActivity(i);
-        }
+        if(isEmpty(userName))
+            userName.setError("Cannot be empty");
+        else if(isEmpty(userPassword) || !isValidPassword(userPassword))
+            userPassword.setError("Not a valid password");
         else {
-            Toast.makeText(this, "Username and password doesn't match!", Toast.LENGTH_LONG).show();
-        }
+            user = userName.getText().toString();
+            pass = userPassword.getText().toString();
 
-        // TODO: Parse user info, check it on DB.
+            String password = db.searchPass(user);
+            if (pass.equals(password)) {
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.putExtra("Username", user);
+                startActivity(i);
+            } else {
+                Toast.makeText(this, "Username and password doesn't match!", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void forgetPassword(View view) {
@@ -50,5 +53,14 @@ public class LoginActivity extends AppCompatActivity {
         // TODO: Move to a fragment / Activity that asks user for personal details and then send a database query to register new user.
         Intent moveIntent = new Intent(this, RegisterActivity.class);
         startActivity(moveIntent);
+    }
+
+    private boolean isValidPassword(EditText pass) {
+        String password = pass.getText().toString();
+        return password != null && password.length() >= 6;
+    }
+
+    private boolean isEmpty(EditText etText) {
+        return etText.getText().toString().trim().length() == 0;
     }
 }

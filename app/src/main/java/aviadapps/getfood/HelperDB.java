@@ -70,7 +70,7 @@ public class HelperDB extends SQLiteOpenHelper {
             cursor.moveToFirst();
         // Calling the user class constructor to create the user, then return it.
         User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                Integer.parseInt(cursor.getString(2)), cursor.getString(3),cursor.getString(4));
+                cursor.getString(2), cursor.getString(3),cursor.getString(4));
         return user;
     }
 
@@ -102,7 +102,7 @@ public class HelperDB extends SQLiteOpenHelper {
                 user.setId(Integer.parseInt(cursor.getString(0)));
                 user.setName(cursor.getString(1));
                 user.setUserName(cursor.getString(2));
-                user.setPhone(Integer.parseInt(cursor.getString(3)));
+                user.setPhone(cursor.getString(3));
                 user.setUserPassword(cursor.getString(4));
                 userList.add(user);
             }

@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText userET, emailET, passwordET, phoneET, nameET;
-    String user, email, password, name;
-    int phone;
+    String user, email, password, name, phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,44 +27,46 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerUser(View view) {
-        if(!isEmpty(userET))
-            user = userET.getText().toString();
-        else
+        if(isEmpty(userET))
             userET.setError("Cannot be empty.");
-        if(!isEmpty(nameET))
-            name = nameET.getText().toString();
-        else
+        else if(isEmpty(nameET))
             nameET.setError("Cannot be empty.");
-        if(isEmailValid(email))
-            email = emailET.getText().toString();
-        else
+        else if(isEmpty(emailET) || !isValidEmail(emailET))
             emailET.setError("Not a email address");
-        if(isValidPassword(password))
-            password = passwordET.getText().toString();
-        else
+        else if(isEmpty(passwordET) || !isValidPassword(passwordET))
             passwordET.setError("Pass should be more than 6 characters");
-
-        phone = Integer.parseInt(phoneET.getText().toString());
-        // TODO: Check the info provided by user
-        HelperDB db = new HelperDB(this);
-        User createUser = new User(0, name, phone, user, password);
-        db.addUser(createUser);
-        Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
-    }
-
-    boolean isEmailValid(CharSequence email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() > 6) {
-            return true;
+        else if(isEmpty(phoneET) || !isValidPhone(phoneET))
+            phoneET.setError("Phone should be 10 digits");
+        else {
+            user = userET.getText().toString();
+            name = nameET.getText().toString();
+            email = emailET.getText().toString();
+            password = passwordET.getText().toString();
+            phone = phoneET.getText().toString();
+            HelperDB db = new HelperDB(this);
+            User createUser = new User(0, name, phone, user, password);
+            db.addUser(createUser);
+            Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
         }
-        return false;
+    }
+
+    private boolean isValidEmail(EditText email) {
+        CharSequence mail = email.getText().toString();
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+    }
+
+    private boolean isValidPassword(EditText pass) {
+        String password = pass.getText().toString();
+        return password != null && password.length() >= 6;
     }
 
     private boolean isEmpty(EditText etText) {
         return etText.getText().toString().trim().length() == 0;
+    }
+
+    private boolean isValidPhone(EditText phone) {
+        String phoneNum = phone.getText().toString();
+        return phoneNum.length() == 10;
     }
 
 }

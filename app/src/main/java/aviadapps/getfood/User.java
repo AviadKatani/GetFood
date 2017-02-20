@@ -7,14 +7,14 @@ package aviadapps.getfood;
 public class User {
     private int id;
     private String name;
-    private int phone;
+    private String phone;
     private String userName;
     private String userPassword;
 
     public User() {
     }
 
-    public User(int id, String name, int phone, String userName, String userPassword) {
+    public User(int id, String name, String phone, String userName, String userPassword) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -29,7 +29,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
     public void setUserName(String userName) {
@@ -44,7 +44,7 @@ public class User {
     public String getName() {
         return name;
     }
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
     public String getUserName() {return userName; }
