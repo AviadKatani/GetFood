@@ -1,18 +1,24 @@
 package aviadapps.getfood;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
     HelperDB db = new HelperDB(this);
     EditText userName, userPassword;
-    String user, pass;
+    private String user, pass, forget_Pass = "";
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         userName = (EditText) findViewById(R.id.etUsername);
         userPassword = (EditText) findViewById(R.id.etUserpass);
+        layout = (LinearLayout)findViewById(R.id.mainLayout);
     }
 
     public void loginClicked(View view) {
@@ -46,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void forgetPassword(View view) {
-        // TODO: Move to a fragment / Activity that sends the user info to email.
+        showDialog();
     }
 
     public void moveToRegister(View view) {
@@ -63,4 +70,39 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isEmpty(EditText etText) {
         return etText.getText().toString().trim().length() == 0;
     }
+
+    private boolean isValidEmail(EditText email) {
+        CharSequence mail = email.getText().toString();
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+    }
+
+    public void showDialog()
+    {
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        new AlertDialog.Builder(this)
+                .setView(input)
+                .setTitle("Forget password")
+                .setMessage("Please enter your email below:")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(!isEmpty(input) && isValidEmail(input)) {
+                            forget_Pass = input.getText().toString();
+                            Toast.makeText(LoginActivity.this, "Thanks, password will be send to: " + forget_Pass, Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(LoginActivity.this, "Please enter a valid email", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(LoginActivity.this, "Canceled", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    // TODO: Write an email send function! :)
 }

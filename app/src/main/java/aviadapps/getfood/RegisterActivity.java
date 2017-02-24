@@ -1,5 +1,6 @@
 package aviadapps.getfood;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends Activity {
     EditText userET, emailET, passwordET, phoneET, nameET;
     String user, email, password, name, phone;
 
