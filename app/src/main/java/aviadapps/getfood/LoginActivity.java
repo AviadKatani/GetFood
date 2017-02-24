@@ -1,24 +1,37 @@
 package aviadapps.getfood;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
 
 public class LoginActivity extends Activity {
     HelperDB db = new HelperDB(this);
     EditText userName, userPassword;
     private String user, pass, forget_Pass = "";
     LinearLayout layout;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +43,7 @@ public class LoginActivity extends Activity {
         userName = (EditText) findViewById(R.id.etUsername);
         userPassword = (EditText) findViewById(R.id.etUserpass);
         layout = (LinearLayout)findViewById(R.id.mainLayout);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     public void loginClicked(View view) {
@@ -88,6 +102,8 @@ public class LoginActivity extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         if(!isEmpty(input) && isValidEmail(input)) {
                             forget_Pass = input.getText().toString();
+                            sendEmail send = new sendEmail();
+                            send.execute(forget_Pass);
                             Toast.makeText(LoginActivity.this, "Thanks, password will be send to: " + forget_Pass, Toast.LENGTH_LONG).show();
                         }
                         else {
@@ -105,4 +121,47 @@ public class LoginActivity extends Activity {
     }
 
     // TODO: Write an email send function! :)
+
+    public class sendEmail extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            String urlAddress = "https://api.elasticemail.com/v2/email/send", apiKey = "757b3598-2532-4286-94e3-d7d42247a390", subject = "Your password",
+                    from = "aviadkatani@gmail.com", encoding = "UTF-8", body = "New password is 123123", to = params[0];
+            HttpURLConnection urlConnection = null;
+            try {
+                String data = "apikey=" + URLEncoder.encode(apiKey, encoding);
+                data += "&from=" + URLEncoder.encode(from, encoding);
+                data += "&fromName=" + URLEncoder.encode("GetFood", encoding);
+                data += "&subject=" + URLEncoder.encode(subject, encoding);
+                data += "&bodyHtml=" + URLEncoder.encode(body, encoding);
+                data += "&to=" + URLEncoder.encode(to, encoding);
+                URL url = new URL(urlAddress);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoInput(true);
+                OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+                wr.write(data);
+                wr.flush();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                String result = rd.readLine();
+                wr.close();
+                rd.close();
+                Log.e("LoginActivity", "URL Connected: " + urlAddress);
+                return result;
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
 }

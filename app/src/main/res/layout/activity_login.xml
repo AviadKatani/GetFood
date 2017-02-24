@@ -99,6 +99,14 @@
                 android:elevation="0dp"
                 android:textStyle="normal|italic" />
 
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/progressBar"
+                android:layout_weight="0" />
+
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
