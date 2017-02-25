@@ -45,7 +45,7 @@ public class RegisterActivity extends Activity {
             password = passwordET.getText().toString();
             phone = phoneET.getText().toString();
             HelperDB db = new HelperDB(this);
-            User createUser = new User(0, name, phone, user, password);
+            User createUser = new User(0, name, phone, user, email, password);
             db.addUser(createUser);
             Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
         }

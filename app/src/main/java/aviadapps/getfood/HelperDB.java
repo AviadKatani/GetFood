@@ -19,6 +19,7 @@ public class HelperDB extends SQLiteOpenHelper {
     private static final String KEY_ID = "_id";
     public static final String KEY_NAME = "Name";
     public static final String KEY_USER = "UserName";
+    public static final String KEY_EMAIL = "Email";
     public static final String KEY_PASSWORD = "Password";
     public static final String KEY_PHONE = "Phone";
 
@@ -34,6 +35,7 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += KEY_ID + " INTEGER PRIMARY KEY, ";
         strCreate += KEY_NAME + " TEXT, ";
         strCreate += KEY_USER + " TEXT, ";
+        strCreate += KEY_EMAIL + " TEXT, ";
         strCreate += KEY_PHONE + " TEXT, ";
         strCreate += KEY_PASSWORD + " TEXT" + ")";
 
@@ -53,6 +55,7 @@ public class HelperDB extends SQLiteOpenHelper {
         values.put(KEY_NAME, user.getName());
         values.put(KEY_PASSWORD, user.getUserPassword());
         values.put(KEY_USER, user.getUserName());
+        values.put(KEY_EMAIL, user.getEmailAddress());
         values.put(KEY_PHONE, user.getPhone());
         // Insert to database
         db.insert(TABLE_USERS, null, values);
@@ -63,14 +66,14 @@ public class HelperDB extends SQLiteOpenHelper {
     public User getUser(int id) {
         db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, new String[] { KEY_ID,
-                KEY_NAME, KEY_USER, KEY_PHONE, KEY_PASSWORD},
+                KEY_NAME, KEY_USER, KEY_EMAIL, KEY_PHONE, KEY_PASSWORD},
                 KEY_ID + "=?",
                 new String[] {String.valueOf(id)}, null, null, null, null);
         if(cursor != null)
             cursor.moveToFirst();
         // Calling the user class constructor to create the user, then return it.
         User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                cursor.getString(2), cursor.getString(3),cursor.getString(4));
+                cursor.getString(2), cursor.getString(3),cursor.getString(4), cursor.getString(5));
         return user;
     }
 
@@ -102,8 +105,9 @@ public class HelperDB extends SQLiteOpenHelper {
                 user.setId(Integer.parseInt(cursor.getString(0)));
                 user.setName(cursor.getString(1));
                 user.setUserName(cursor.getString(2));
-                user.setPhone(cursor.getString(3));
-                user.setUserPassword(cursor.getString(4));
+                user.setEmailAddress(cursor.getString(3));
+                user.setPhone(cursor.getString(4));
+                user.setUserPassword(cursor.getString(5));
                 userList.add(user);
             }
             while (cursor.moveToNext());
@@ -129,5 +133,15 @@ public class HelperDB extends SQLiteOpenHelper {
             while(cursor.moveToNext());
         }
         return b;
+    }
+
+    public String getPassFromEmail(String emailAddress) {
+        db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE `Email` = '" + emailAddress+"'";
+        Cursor cursor = db.rawQuery(query, null);
+        String b = "Not found";
+        if(!cursor.moveToFirst()) cursor.moveToFirst();
+        if(cursor.getCount() == 0) return b;
+        else return cursor.getString(5);
     }
 }

@@ -19,10 +19,8 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -30,7 +28,6 @@ public class LoginActivity extends Activity {
     HelperDB db = new HelperDB(this);
     EditText userName, userPassword;
     private String user, pass, forget_Pass = "";
-    LinearLayout layout;
     ProgressBar progressBar;
 
     @Override
@@ -42,7 +39,6 @@ public class LoginActivity extends Activity {
 
         userName = (EditText) findViewById(R.id.etUsername);
         userPassword = (EditText) findViewById(R.id.etUserpass);
-        layout = (LinearLayout)findViewById(R.id.mainLayout);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
@@ -102,9 +98,15 @@ public class LoginActivity extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         if(!isEmpty(input) && isValidEmail(input)) {
                             forget_Pass = input.getText().toString();
-                            sendEmail send = new sendEmail();
-                            send.execute(forget_Pass);
-                            Toast.makeText(LoginActivity.this, "Thanks, password will be send to: " + forget_Pass, Toast.LENGTH_LONG).show();
+                            String password = db.getPassFromEmail(forget_Pass);
+                            if(password.equals("Not found")) {
+                                Toast.makeText(LoginActivity.this, "Couldn't find user with this mail: " + forget_Pass, Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                sendEmail send = new sendEmail();
+                                send.execute(forget_Pass, password);
+                                Toast.makeText(LoginActivity.this, "Thanks, password will be send to: " + forget_Pass, Toast.LENGTH_LONG).show();
+                            }
                         }
                         else {
                             Toast.makeText(LoginActivity.this, "Please enter a valid email", Toast.LENGTH_LONG).show();
@@ -130,8 +132,8 @@ public class LoginActivity extends Activity {
         }
         @Override
         protected String doInBackground(String... params) {
-            String urlAddress = "https://api.elasticemail.com/v2/email/send", apiKey = "757b3598-2532-4286-94e3-d7d42247a390", subject = "Your password",
-                    from = "aviadkatani@gmail.com", encoding = "UTF-8", body = "New password is 123123", to = params[0];
+            String urlAddress = "https://api.elasticemail.com/v2/email/send", apiKey = "757b3598-2532-4286-94e3-d7d42247a390", subject = "GetFood - Your password",
+                    from = "aviadkatani@gmail.com", encoding = "UTF-8", to = params[0], body = "Your current password is  " + params[1];
             HttpURLConnection urlConnection = null;
             try {
                 String data = "apikey=" + URLEncoder.encode(apiKey, encoding);
@@ -151,7 +153,7 @@ public class LoginActivity extends Activity {
                 String result = rd.readLine();
                 wr.close();
                 rd.close();
-                Log.e("LoginActivity", "URL Connected: " + urlAddress);
+                Log.e("LoginActivity", "URL Connected: " + urlAddress + "Data is: " + data);
                 return result;
             } catch(IOException e) {
                 e.printStackTrace();
