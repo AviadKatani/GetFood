@@ -115,14 +115,12 @@ public class LoginActivity extends Activity {
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(LoginActivity.this, "Canceled", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Canceled", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
-
-    // TODO: Write an email send function! :)
 
     public class sendEmail extends AsyncTask<String, Void, String> {
         @Override

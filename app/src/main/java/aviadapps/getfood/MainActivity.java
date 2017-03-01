@@ -7,10 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     TextView textLog;
     String userName;
 
@@ -23,5 +25,35 @@ public class MainActivity extends Activity {
         Intent getIntent = getIntent();
         userName = getIntent.getStringExtra("Username");
         textLog.setText("You're logged in, " + userName + "!");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        Intent i = null;
+        if(id == R.id.action_main) {
+            i = new Intent(this, MainActivity.class);
+        }
+
+        else if(id == R.id.action_menu) {
+            i = new Intent(this, MainActivity.class);
+        }
+
+        else if(id == R.id.action_history) {
+            i = new Intent(this, HistoryActivity.class);
+        }
+
+        else {
+            i = new Intent(this, MainActivity.class);
+        }
+        startActivity(i);
+
+        return true;
     }
 }
