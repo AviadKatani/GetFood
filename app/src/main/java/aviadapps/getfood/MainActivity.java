@@ -57,4 +57,18 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    public void orderClicked(View view) {
+        // TODO: Move to order activity
+    }
+
+
+    public void historyClicked(View view) {
+        // TODO: Move to order history activity
+    }
+
+
+    public void helpClicked(View view) {
+        // TODO: Move to help activity
+    }
 }

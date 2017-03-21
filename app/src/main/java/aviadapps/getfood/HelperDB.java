@@ -15,6 +15,7 @@ public class HelperDB extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DB_NAME = "userdb.db"; // Database file name
     public static final String TABLE_USERS = "Users";
+    public static final String TABLE_COMPANY = "Company";
     // All of the database keys:
     private static final String KEY_ID = "_id";
     public static final String KEY_NAME = "Name";
@@ -22,6 +23,9 @@ public class HelperDB extends SQLiteOpenHelper {
     public static final String KEY_EMAIL = "Email";
     public static final String KEY_PASSWORD = "Password";
     public static final String KEY_PHONE = "Phone";
+
+    // Company keys
+    public static final String KEY_MENU = "Menu";
 
     private String strCreate, strDelete;
 
