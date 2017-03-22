@@ -1,5 +1,6 @@
 package aviadapps.getfood;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -9,8 +10,9 @@ import java.util.List;
 public class Company {
     private int id;
     private String name;
-    private List menu;
+    private HashMap<String, Double> menu;
     private String phone;
+    private String emailAddress;
     private String address;
 
     public void setId(int id) {
@@ -29,8 +31,12 @@ public class Company {
         this.address = address;
     }
 
-    public void setMenu(List menu) {
+    public void setMenu(HashMap<String, Double> menu) {
         this.menu = menu;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public int getId() {
@@ -49,7 +55,11 @@ public class Company {
         return address;
     }
 
-    public List getMenu() {
+    public HashMap<String, Double> getMenu() {
         return menu;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
     }
 }

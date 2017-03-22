@@ -26,6 +26,7 @@ public class HelperDB extends SQLiteOpenHelper {
 
     // Company keys
     public static final String KEY_MENU = "Menu";
+    public static final String
 
     private String strCreate, strDelete;
 
@@ -43,13 +44,23 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += KEY_PHONE + " TEXT, ";
         strCreate += KEY_PASSWORD + " TEXT" + ")";
 
-        db.execSQL(strCreate); // Database created.
+        db.execSQL(strCreate); // Users database created.
+
+        strCreate = "CREATE TABLE " + TABLE_COMPANY + " (";
+        strCreate += KEY_ID + " INTEGER PRIMARY KEY, ";
+        strCreate += KEY_NAME + " TEXT, ";
+        strCreate += KEY_EMAIL + " TEXT, ";
+        strCreate += KEY_PHONE + " TEXT, ";
+
+        db.execSQL(strCreate);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         strDelete = "DROP TABLE IF EXISTS " + TABLE_USERS;
         db.execSQL(strDelete); // Database deleted.
+        strDelete = "DROP TABLE IF EXISTS " + TABLE_COMPANY;
+        db.execSQL(strDelete);
         onCreate(db);
     }
 
@@ -141,11 +152,53 @@ public class HelperDB extends SQLiteOpenHelper {
 
     public String getPassFromEmail(String emailAddress) {
         db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_USERS + " WHERE `Email` = '" + emailAddress+"'";
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE `Email` = '" + emailAddress+ "'";
         Cursor cursor = db.rawQuery(query, null);
         String b = "Not found";
         if(!cursor.moveToFirst()) cursor.moveToFirst();
         if(cursor.getCount() == 0) return b;
         else return cursor.getString(5);
+    }
+
+    // Company Database Functions
+
+    public void addCompany(Company company) {
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, company.getName());
+        values.put(KEY_EMAIL, company.getEmailAddress());
+        values.put(KEY_PHONE, company.getPhone());
+        values.put(KEY_MENU, company.getMenu());
+        // Insert to database
+        db.insert(TABLE_USERS, null, values);
+        db.close();
+    }
+
+    public int getCompaniesCount() {
+        String countQuery = "SELECT * FROM" + TABLE_COMPANY;
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+        return cursor.getCount();
+    }
+
+    public String getAllCompanies() {
+        List<Company> companyList = new ArrayList<Company>();
+
+        String query = "SELECT * FROM" + TABLE_COMPANY;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()) {
+            do {
+                Company company = new Company();
+                company.setId(Integer.parseInt(cursor.getString(0)));
+                company.setName(cursor.getString(1));
+                company.setPhone(cursor.getString(2));
+                //company.setMenu();
+                company.add(user);
+            }
+            while (cursor.moveToNext());
+        }
+        return userList;
     }
 }
