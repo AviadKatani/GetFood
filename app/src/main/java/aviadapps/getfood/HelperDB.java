@@ -26,7 +26,6 @@ public class HelperDB extends SQLiteOpenHelper {
 
     // Company keys
     public static final String KEY_MENU = "Menu";
-    public static final String
 
     private String strCreate, strDelete;
 
@@ -51,6 +50,7 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += KEY_NAME + " TEXT, ";
         strCreate += KEY_EMAIL + " TEXT, ";
         strCreate += KEY_PHONE + " TEXT, ";
+        strCreate += KEY_MENU + " TEXT" + ")";
 
         db.execSQL(strCreate);
     }
@@ -152,7 +152,7 @@ public class HelperDB extends SQLiteOpenHelper {
 
     public String getPassFromEmail(String emailAddress) {
         db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_USERS + " WHERE `Email` = '" + emailAddress+ "'";
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE `Email` = '" + emailAddress + "'";
         Cursor cursor = db.rawQuery(query, null);
         String b = "Not found";
         if(!cursor.moveToFirst()) cursor.moveToFirst();
@@ -182,6 +182,7 @@ public class HelperDB extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
+    /*
     public String getAllCompanies() {
         List<Company> companyList = new ArrayList<Company>();
 
@@ -201,4 +202,5 @@ public class HelperDB extends SQLiteOpenHelper {
         }
         return userList;
     }
+    */
 }

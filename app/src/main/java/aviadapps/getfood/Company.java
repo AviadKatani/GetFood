@@ -10,7 +10,7 @@ import java.util.List;
 public class Company {
     private int id;
     private String name;
-    private HashMap<String, Double> menu;
+    private String menu;
     private String phone;
     private String emailAddress;
     private String address;
@@ -31,7 +31,7 @@ public class Company {
         this.address = address;
     }
 
-    public void setMenu(HashMap<String, Double> menu) {
+    public void setMenu(String menu) {
         this.menu = menu;
     }
 
@@ -55,7 +55,7 @@ public class Company {
         return address;
     }
 
-    public HashMap<String, Double> getMenu() {
+    public String getMenu() {
         return menu;
     }
 

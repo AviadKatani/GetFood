@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     TextView textLog;
     String userName;
+    Intent i = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Intent i = null;
         if(id == R.id.action_main) {
             i = new Intent(this, MainActivity.class);
         }
@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
             i = new Intent(this, HistoryActivity.class);
         }
 
+        else if(id == R.id.action_settings) {
+            i = new Intent(this, SettingsActivity.class);
+        }
         else {
             i = new Intent(this, MainActivity.class);
         }
@@ -59,11 +62,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void orderClicked(View view) {
+        i = new Intent(this, OrderActivity.class);
+        startActivity(i);
         // TODO: Move to order activity
     }
 
 
     public void historyClicked(View view) {
+        i = new Intent(this, HistoryActivity.class);
+        startActivity(i);
         // TODO: Move to order history activity
     }
 
