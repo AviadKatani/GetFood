@@ -22,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
         Intent getIntent = getIntent();
         userName = getIntent.getStringExtra("Username");
         nameET = (EditText) findViewById(R.id.settingName);
-        passET = (EditText) findViewById(R.id.settingPass);
+        // passET = (EditText) findViewById(R.id.settingPass);
         phoneET = (EditText) findViewById(R.id.settingPhone);
     }
 }

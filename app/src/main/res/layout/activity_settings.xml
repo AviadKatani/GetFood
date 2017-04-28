@@ -7,6 +7,14 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="aviadapps.getfood.SettingsActivity">
+
+    <TextView
+        android:id="@+id/companyTV"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Add your company!" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Username" />
+            android:text="Restaurant Name" />
 
         <EditText
             android:id="@+id/settingName"
@@ -45,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Phone" />
+            android:text="Phone Number" />
 
         <EditText
             android:id="@+id/settingPhone"
@@ -66,14 +74,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Password" />
+            android:text="Menu" />
 
         <EditText
-            android:id="@+id/settingPass"
+            android:id="@+id/menuET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:text="Email" />
     </LinearLayout>
 

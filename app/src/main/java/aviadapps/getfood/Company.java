@@ -62,4 +62,8 @@ public class Company {
     public String getEmailAddress() {
         return emailAddress;
     }
+
+    public String toString() {
+        return "Name: " + name + " email: " + emailAddress + " phone: " + phone + " Menu: " + menu;
+    }
 }

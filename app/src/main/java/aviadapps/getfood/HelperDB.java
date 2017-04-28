@@ -51,10 +51,14 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += KEY_EMAIL + " TEXT, ";
         strCreate += KEY_PHONE + " TEXT, ";
         strCreate += KEY_MENU + " TEXT" + ")";
+        db.execSQL(strCreate); // Company database created
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (1,'Aroma','aviadkatani@gmail.com', '050-743-2010', 'Test Aroma Menu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (2,'Pizza Hut','aviadkatani@gmail.com', '050-743-2010', 'Test Pizza HutMenu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'Dominos','aviadkatani@gmail.com', '050-743-2010', 'Test Dominos Menu')");
 
-        db.execSQL(strCreate);
     }
 
+    // TODO: Create a menu database which contains id, foodName, foodPrice -- should be enough for HashMap.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         strDelete = "DROP TABLE IF EXISTS " + TABLE_USERS;
@@ -182,11 +186,10 @@ public class HelperDB extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
-    /*
-    public String getAllCompanies() {
+    public List<Company> getAllCompanies() {
         List<Company> companyList = new ArrayList<Company>();
 
-        String query = "SELECT * FROM" + TABLE_COMPANY;
+        String query = "SELECT * FROM " + TABLE_COMPANY;
         db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.moveToFirst()) {
@@ -195,12 +198,11 @@ public class HelperDB extends SQLiteOpenHelper {
                 company.setId(Integer.parseInt(cursor.getString(0)));
                 company.setName(cursor.getString(1));
                 company.setPhone(cursor.getString(2));
-                //company.setMenu();
-                company.add(user);
+                company.setMenu(cursor.getString(3));
+                companyList.add(company);
             }
             while (cursor.moveToNext());
         }
-        return userList;
+        return companyList;
     }
-    */
 }
