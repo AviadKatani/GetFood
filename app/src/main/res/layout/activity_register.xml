@@ -27,6 +27,14 @@
             android:id="@+id/nameET" />
 
         <EditText
+            android:id="@+id/addressET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Home Address"
+            android:inputType="textPersonName" />
+
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"

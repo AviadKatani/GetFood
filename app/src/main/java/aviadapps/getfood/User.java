@@ -11,13 +11,17 @@ public class User {
     private String userName;
     private String userPassword;
     private String emailAddress;
+    private int num_of_orders;
+    private String address;
+    private String[] ordersInfo;
 
     public User() {
     }
 
-    public User(int id, String name, String phone, String userName, String emailAddress, String userPassword) {
+    public User(int id, String name, String address, String phone, String userName, String emailAddress, String userPassword) {
         this.id = id;
         this.name = name;
+        this.address = address;
         this.emailAddress = emailAddress;
         this.phone = phone;
         this.userName = userName;
@@ -30,6 +34,9 @@ public class User {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public void setAddress(String address) {
+        this.address = address;
     }
     public void setPhone(String phone) {
         this.phone = phone;
@@ -48,6 +55,9 @@ public class User {
     }
     public String getName() {
         return name;
+    }
+    public String getAddress() {
+        return address;
     }
     public String getPhone() {
         return phone;

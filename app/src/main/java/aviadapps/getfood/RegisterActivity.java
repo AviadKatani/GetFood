@@ -12,8 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends Activity {
-    EditText userET, emailET, passwordET, phoneET, nameET;
-    String user, email, password, name, phone;
+    EditText userET, emailET, passwordET, phoneET, nameET, addressET;
+    String user, email, password, name, phone, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class RegisterActivity extends Activity {
 
         userET = (EditText)findViewById(R.id.userET);
         nameET = (EditText)findViewById(R.id.nameET);
+        addressET = (EditText)findViewById(R.id.addressET);
         emailET = (EditText)findViewById(R.id.emailET);
         passwordET = (EditText)findViewById(R.id.passwordET);
         phoneET = (EditText)findViewById(R.id.phoneET);
@@ -38,14 +39,17 @@ public class RegisterActivity extends Activity {
             passwordET.setError("Pass should be more than 6 characters");
         else if(isEmpty(phoneET) || !isValidPhone(phoneET))
             phoneET.setError("Phone should be 10 digits");
+        else if(isEmpty(addressET))
+            addressET.setError("Cannot be empty.");
         else {
             user = userET.getText().toString();
             name = nameET.getText().toString();
+            address = addressET.getText().toString();
             email = emailET.getText().toString();
             password = passwordET.getText().toString();
             phone = phoneET.getText().toString();
             HelperDB db = new HelperDB(this);
-            User createUser = new User(0, name, phone, user, email, password);
+            User createUser = new User(0, name, address, phone, user, email, password);
             db.addUser(createUser);
             Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
         }

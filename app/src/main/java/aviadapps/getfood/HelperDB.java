@@ -19,6 +19,7 @@ public class HelperDB extends SQLiteOpenHelper {
     // All of the database keys:
     private static final String KEY_ID = "_id";
     public static final String KEY_NAME = "Name";
+    public static final String KEY_ADDRESS = "Address";
     public static final String KEY_USER = "UserName";
     public static final String KEY_EMAIL = "Email";
     public static final String KEY_PASSWORD = "Password";
@@ -38,6 +39,7 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate = "CREATE TABLE " + TABLE_USERS + " (";
         strCreate += KEY_ID + " INTEGER PRIMARY KEY, ";
         strCreate += KEY_NAME + " TEXT, ";
+        strCreate += KEY_ADDRESS + " TEXT, ";
         strCreate += KEY_USER + " TEXT, ";
         strCreate += KEY_EMAIL + " TEXT, ";
         strCreate += KEY_PHONE + " TEXT, ";
@@ -55,6 +57,8 @@ public class HelperDB extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (1,'Aroma','aviadkatani@gmail.com', '050-743-2010', 'Test Aroma Menu')");
         db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (2,'Pizza Hut','aviadkatani@gmail.com', '050-743-2010', 'Test Pizza HutMenu')");
         db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'Dominos','aviadkatani@gmail.com', '050-743-2010', 'Test Dominos Menu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'McDonalds','aviadkatani@gmail.com', '050-743-2010', 'Test McDonalds Menu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'BBB','aviadkatani@gmail.com', '050-743-2010', 'Test BBB Menu')");
 
     }
 
@@ -92,7 +96,7 @@ public class HelperDB extends SQLiteOpenHelper {
             cursor.moveToFirst();
         // Calling the user class constructor to create the user, then return it.
         User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                cursor.getString(2), cursor.getString(3),cursor.getString(4), cursor.getString(5));
+                cursor.getString(2), cursor.getString(3), cursor.getString(4),cursor.getString(5), cursor.getString(6));
         return user;
     }
 
@@ -123,10 +127,11 @@ public class HelperDB extends SQLiteOpenHelper {
                 User user = new User();
                 user.setId(Integer.parseInt(cursor.getString(0)));
                 user.setName(cursor.getString(1));
-                user.setUserName(cursor.getString(2));
-                user.setEmailAddress(cursor.getString(3));
-                user.setPhone(cursor.getString(4));
-                user.setUserPassword(cursor.getString(5));
+                user.setAddress(cursor.getString(2));
+                user.setUserName(cursor.getString(3));
+                user.setEmailAddress(cursor.getString(4));
+                user.setPhone(cursor.getString(5));
+                user.setUserPassword(cursor.getString(6));
                 userList.add(user);
             }
             while (cursor.moveToNext());
