@@ -1,10 +1,6 @@
 package aviadapps.getfood;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -49,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
             i = new Intent(this, HistoryActivity.class);
         }
 
-        else if(id == R.id.action_settings) {
-            i = new Intent(this, SettingsActivity.class);
+        else if(id == R.id.action_addcompany) {
+            i = new Intent(this, addCompanyActivity.class);
         }
         else {
             i = new Intent(this, MainActivity.class);

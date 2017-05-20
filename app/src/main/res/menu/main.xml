@@ -19,9 +19,15 @@
         app:showAsAction="never"
         ></item>
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:id="@+id/action_addcompany"
+        android:title="Add your Company"
         android:orderInCategory="4"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/action_credits"
+        android:title="App Credits"
+        android:orderInCategory="5"
         app:showAsAction="never"
         ></item>
 </menu>

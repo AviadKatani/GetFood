@@ -57,8 +57,8 @@ public class HelperDB extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (1,'Aroma','aviadkatani@gmail.com', '050-743-2010', 'Test Aroma Menu')");
         db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (2,'Pizza Hut','aviadkatani@gmail.com', '050-743-2010', 'Test Pizza HutMenu')");
         db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'Dominos','aviadkatani@gmail.com', '050-743-2010', 'Test Dominos Menu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'McDonalds','aviadkatani@gmail.com', '050-743-2010', 'Test McDonalds Menu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'BBB','aviadkatani@gmail.com', '050-743-2010', 'Test BBB Menu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (4,'McDonalds','aviadkatani@gmail.com', '050-743-2010', 'Test McDonalds Menu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (5,'BBB','aviadkatani@gmail.com', '050-743-2010', 'Test BBB Menu')");
 
     }
 
@@ -166,7 +166,7 @@ public class HelperDB extends SQLiteOpenHelper {
         String b = "Not found";
         if(!cursor.moveToFirst()) cursor.moveToFirst();
         if(cursor.getCount() == 0) return b;
-        else return cursor.getString(5);
+        else return cursor.getString(6);
     }
 
     // Company Database Functions
@@ -202,8 +202,9 @@ public class HelperDB extends SQLiteOpenHelper {
                 Company company = new Company();
                 company.setId(Integer.parseInt(cursor.getString(0)));
                 company.setName(cursor.getString(1));
-                company.setPhone(cursor.getString(2));
-                company.setMenu(cursor.getString(3));
+                company.setEmailAddress(cursor.getString(2));
+                company.setPhone(cursor.getString(3));
+                company.setMenu(cursor.getString(4));
                 companyList.add(company);
             }
             while (cursor.moveToNext());

@@ -17,4 +17,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="TV Menu should be here..." />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/menuTV"
+        android:layout_alignRight="@+id/menuTV"
+        android:layout_below="@+id/menuTV"
+        android:layout_marginTop="26dp" />
 </RelativeLayout>

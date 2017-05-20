@@ -3,21 +3,16 @@ package aviadapps.getfood;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
-import java.util.List;
-
-public class SettingsActivity extends AppCompatActivity {
+public class addCompanyActivity extends AppCompatActivity {
     String userName, userPassword, userPhone;
-    EditText nameET, passET, phoneET;
+    EditText nameET, passET, phoneET, addressET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_addcompany);
 
         Intent getIntent = getIntent();
         userName = getIntent.getStringExtra("Username");
