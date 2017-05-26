@@ -54,11 +54,11 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += KEY_PHONE + " TEXT, ";
         strCreate += KEY_MENU + " TEXT" + ")";
         db.execSQL(strCreate); // Company database created
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (1,'Aroma','aviadkatani@gmail.com', '050-743-2010', 'Test Aroma Menu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (2,'Pizza Hut','aviadkatani@gmail.com', '050-743-2010', 'Test Pizza HutMenu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'Dominos','aviadkatani@gmail.com', '050-743-2010', 'Test Dominos Menu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (4,'McDonalds','aviadkatani@gmail.com', '050-743-2010', 'Test McDonalds Menu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (5,'BBB','aviadkatani@gmail.com', '050-743-2010', 'Test BBB Menu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (1,'Aroma','aviadkatani@gmail.com', '050-743-2010', 'TestAromaMenu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (2,'Pizza Hut','aviadkatani@gmail.com', '050-743-2010', 'TestPizzaHutMenu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'Dominos','aviadkatani@gmail.com', '050-743-2010', 'TestDominosMenu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (4,'McDonalds','aviadkatani@gmail.com', '050-743-2010', 'TestMcDonaldsMenu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (5,'BBB','aviadkatani@gmail.com', '050-743-2010', 'TestBBBMenu')");
 
     }
 

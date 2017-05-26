@@ -132,7 +132,7 @@ public class LoginActivity extends Activity {
         protected String doInBackground(String... params) {
             String urlAddress = "https://api.elasticemail.com/v2/email/send", apiKey = "757b3598-2532-4286-94e3-d7d42247a390", subject = "GetFood - Your password",
                     from = "aviadkatani@gmail.com", encoding = "UTF-8", to = params[0], body = "Your current password is:  " + params[1];
-            HttpURLConnection urlConnection = null;
+            HttpURLConnection urlConnection;
             try {
                 String data = "apikey=" + URLEncoder.encode(apiKey, encoding);
                 data += "&from=" + URLEncoder.encode(from, encoding);
