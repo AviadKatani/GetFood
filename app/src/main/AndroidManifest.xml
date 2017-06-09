@@ -22,7 +22,8 @@
         <activity android:name=".HistoryActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".addCompanyActivity"></activity>
+        <activity android:name=".addCompanyActivity" />
+        <activity android:name=".CreditsActivity"></activity>
     </application>
 
 </manifest>

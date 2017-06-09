@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else if(id == R.id.action_menu) {
-            i = new Intent(this, MainActivity.class);
+            i = new Intent(this, OrderActivity.class);
         }
 
         else if(id == R.id.action_history) {
@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         else if(id == R.id.action_addcompany) {
             i = new Intent(this, addCompanyActivity.class);
+        }
+        else if(id == R.id.action_credits) {
+            i = new Intent(this, CreditsActivity.class);
         }
         else {
             i = new Intent(this, MainActivity.class);

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HelperDB extends SQLiteOpenHelper {
-
     SQLiteDatabase db;
     public static final int DATABASE_VERSION = 1;
     public static final String DB_NAME = "userdbc2c.db"; // Database file name
@@ -25,10 +24,8 @@ public class HelperDB extends SQLiteOpenHelper {
     public static final String KEY_PASSWORD = "Password";
     public static final String KEY_PHONE = "Phone";
     public static final String KEY_HISTORY = "History";
-
     // Company keys
     public static final String KEY_MENU = "Menu";
-
     private String strCreate, strDelete;
 
     public HelperDB(Context context) {
@@ -76,7 +73,6 @@ public class HelperDB extends SQLiteOpenHelper {
     public String getHistory(String userName) {
         db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_USERS + " WHERE `UserName` = '" + userName + "'";
-        System.out.println("Know that" + userName);
         Cursor cursor = db.rawQuery(query, null);
         String b = "Not found";
         if(!cursor.moveToFirst()) cursor.moveToFirst();
@@ -165,6 +161,13 @@ public class HelperDB extends SQLiteOpenHelper {
         return userList;
     }
 
+    /**
+     * Returns the password associated with the specific username. Will be used to check user-login.
+     * This method always return something. If user with specific username could not be found, then "Not found" will be returned.
+     * @param userName an userName that suppose to be registered.
+     * @return The password associated with the username.
+     */
+
     public String searchPass(String userName) {
         db = this.getReadableDatabase();
         String query = "select UserName, Password from " + TABLE_USERS;
@@ -174,7 +177,6 @@ public class HelperDB extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 a = cursor.getString(0);
-
                 if(a.equals(userName)) {
                     b = cursor.getString(1);
                     break;
@@ -184,6 +186,13 @@ public class HelperDB extends SQLiteOpenHelper {
         }
         return b;
     }
+
+    /**
+     * Returns the password associated with the specific emailAddress, which then will be sent to the email address. "Forgot Password" Feature.
+     * This method always return something. If user with specific email could not be found, then "Not found" will be returned.
+     * @param emailAddress an email address that suppose to be associated with the user.
+     * @return The password associated with the email address.
+     */
 
     public String getPassFromEmail(String emailAddress) {
         db = this.getReadableDatabase();

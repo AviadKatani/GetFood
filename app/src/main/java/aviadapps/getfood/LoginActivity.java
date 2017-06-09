@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
     HelperDB db = new HelperDB(this);
     EditText userName, userPassword;
     private String user, pass, forget_Pass = "";
