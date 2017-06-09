@@ -87,16 +87,16 @@
                 android:textAllCaps="false" />
 
             <TextView
-                android:text="Sign up now!"
-                android:onClick="moveToRegister"
-                android:textColor="#FFFFFF"
-                android:textAlignment="viewEnd"
-                android:layout_gravity="end"
-                android:layout_width="match_parent"
-                android:layout_weight="0"
-                android:layout_height="wrap_content"
                 android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="0"
                 android:elevation="0dp"
+                android:onClick="moveToRegister"
+                android:text="Sign up now!"
+                android:textAlignment="viewEnd"
+                android:textColor="#FFFFFF"
                 android:textStyle="normal|italic" />
 
             <ProgressBar

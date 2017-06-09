@@ -54,7 +54,7 @@ public class LoginActivity extends Activity {
             String password = db.searchPass(user);
             if (pass.equals(password)) {
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                i.putExtra("Username", user);
+                i.putExtra("userName", user);
                 startActivity(i);
             } else {
                 Toast.makeText(this, "Username and password doesn't match!", Toast.LENGTH_LONG).show();

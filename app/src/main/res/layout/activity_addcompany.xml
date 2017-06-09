@@ -11,8 +11,8 @@
     <TextView
         android:id="@+id/companyTV"
         android:layout_width="wrap_content"
-        android:gravity="center"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Add your company!" />
 
     <LinearLayout
@@ -25,15 +25,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Restaurant Name" />
+            android:hint="Restaurant Name" />
 
         <EditText
-            android:id="@+id/settingName"
+            android:id="@+id/nameET2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,19 +49,39 @@
         android:orientation="horizontal">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Address" />
+
+        <EditText
+            android:id="@+id/addressET2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
             android:id="@+id/phoneTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Phone Number" />
+            android:hint="Phone Number" />
 
         <EditText
-            android:id="@+id/settingPhone"
+            android:id="@+id/phoneET2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Phone" />
+            android:hint="Phone"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -77,62 +97,51 @@
             android:text="Email" />
 
         <EditText
-            android:id="@+id/menuET"
+            android:id="@+id/emailET2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Email" />
+            android:hint="Email"
+            android:inputType="text" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.06"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/menuTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Menu" />
 
         <EditText
-            android:id="@+id/menuET"
+            android:id="@+id/menuET2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Menu" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/addressTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Address" />
-
-        <EditText
-            android:id="@+id/addressET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Address" />
+            android:hint="Menu"
+            android:inputType="text" />
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/button4"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addCompany"
+        android:text="Add Company" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Apply" />
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
 </LinearLayout>

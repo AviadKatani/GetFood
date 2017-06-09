@@ -15,6 +15,18 @@ public class Company {
     private String emailAddress;
     private String address;
 
+    public Company() {
+    }
+
+    public Company(int id, String name, String phone, String emailAddress, String address, String menu) {
+        this.id = id;
+        this.name = name;
+        this.menu = menu;
+        this.phone = phone;
+        this.emailAddress = emailAddress;
+        this.address = address;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -64,6 +76,6 @@ public class Company {
     }
 
     public String toString() {
-        return "Name: " + name + " email: " + emailAddress + " phone: " + phone + " Menu: " + menu;
+        return name + "|" + emailAddress + "|" + phone + "|" + menu;
     }
 }

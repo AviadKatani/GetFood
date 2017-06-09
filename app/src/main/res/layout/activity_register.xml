@@ -61,12 +61,12 @@
             android:hint="Phone Number" />
 
         <EditText
+            android:id="@+id/passwordET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
             android:hint="Password"
-            android:id="@+id/passwordET" />
+            android:inputType="textPassword" />
 
         <Button
             android:text="REGISTER NOW!"

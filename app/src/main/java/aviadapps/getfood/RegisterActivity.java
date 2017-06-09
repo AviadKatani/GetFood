@@ -1,6 +1,7 @@
 package aviadapps.getfood;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,6 +53,9 @@ public class RegisterActivity extends Activity {
             User createUser = new User(0, name, address, phone, user, email, password);
             db.addUser(createUser);
             Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+            i.putExtra("userName", user);
+            startActivity(i);
         }
     }
 

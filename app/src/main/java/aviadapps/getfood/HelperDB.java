@@ -13,7 +13,7 @@ public class HelperDB extends SQLiteOpenHelper {
 
     SQLiteDatabase db;
     public static final int DATABASE_VERSION = 1;
-    public static final String DB_NAME = "userdb.db"; // Database file name
+    public static final String DB_NAME = "userdbc2c.db"; // Database file name
     public static final String TABLE_USERS = "Users";
     public static final String TABLE_COMPANY = "Company";
     // All of the database keys:
@@ -24,6 +24,7 @@ public class HelperDB extends SQLiteOpenHelper {
     public static final String KEY_EMAIL = "Email";
     public static final String KEY_PASSWORD = "Password";
     public static final String KEY_PHONE = "Phone";
+    public static final String KEY_HISTORY = "History";
 
     // Company keys
     public static final String KEY_MENU = "Menu";
@@ -43,8 +44,8 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += KEY_USER + " TEXT, ";
         strCreate += KEY_EMAIL + " TEXT, ";
         strCreate += KEY_PHONE + " TEXT, ";
-        strCreate += KEY_PASSWORD + " TEXT" + ")";
-
+        strCreate += KEY_PASSWORD + " TEXT, ";
+        strCreate += KEY_HISTORY + " TEXT" + ")";
         db.execSQL(strCreate); // Users database created.
 
         strCreate = "CREATE TABLE " + TABLE_COMPANY + " (";
@@ -72,6 +73,30 @@ public class HelperDB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public String getHistory(String userName) {
+        db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE `UserName` = '" + userName + "'";
+        System.out.println("Know that" + userName);
+        Cursor cursor = db.rawQuery(query, null);
+        String b = "Not found";
+        if(!cursor.moveToFirst()) cursor.moveToFirst();
+        System.out.println(cursor.getCount());
+        if(cursor.getCount() == 0) return b;
+        else System.out.println(cursor.getString(7) + "" + cursor.getString(6) +  "" + cursor.getString(5) +  "" + cursor.getString(4) +  "" + cursor.getString(3) +  "" + cursor.getString(2) +  "" + cursor.getString(1) +  " THIS IS ALL"); return cursor.getString(7);
+    }
+
+    public void addHistory(String historyName, String userName) {
+        db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        System.out.print("History to add: " + historyName);
+        value.put("History", historyName);
+        System.out.print("Values are: " + value.toString());
+        db.update(TABLE_USERS, value, KEY_ID + "=" + 0, null);
+        //db.insert(TABLE_USERS, null, value);
+        db.close();
+    }
+
+
     public void addUser(User user) {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -80,6 +105,7 @@ public class HelperDB extends SQLiteOpenHelper {
         values.put(KEY_USER, user.getUserName());
         values.put(KEY_EMAIL, user.getEmailAddress());
         values.put(KEY_PHONE, user.getPhone());
+        values.put(KEY_ADDRESS, user.getAddress());
         // Insert to database
         db.insert(TABLE_USERS, null, values);
         db.close();
@@ -179,7 +205,7 @@ public class HelperDB extends SQLiteOpenHelper {
         values.put(KEY_PHONE, company.getPhone());
         values.put(KEY_MENU, company.getMenu());
         // Insert to database
-        db.insert(TABLE_USERS, null, values);
+        db.insert(TABLE_COMPANY, null, values);
         db.close();
     }
 

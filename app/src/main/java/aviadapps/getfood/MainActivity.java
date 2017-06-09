@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     TextView textLog;
     String userName;
-    Intent i = null;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textLog = (TextView) findViewById(R.id.textLog);
-        Intent getIntent = getIntent();
-        userName = getIntent.getStringExtra("Username");
+        userName = getIntent().getStringExtra("userName");
         textLog.setText("You're logged in, " + userName + "!");
     }
 
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             i = new Intent(this, MainActivity.class);
         }
-        i.putExtra("Username", userName);
+        i.putExtra("userName", userName);
         startActivity(i);
 
         return true;
@@ -59,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void orderClicked(View view) {
         i = new Intent(this, OrderActivity.class);
+        i.putExtra("userName", userName);
         startActivity(i);
         // TODO: Move to order activity
     }
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void historyClicked(View view) {
         i = new Intent(this, HistoryActivity.class);
+        i.putExtra("userName", userName);
         startActivity(i);
         // TODO: Move to order history activity
     }
