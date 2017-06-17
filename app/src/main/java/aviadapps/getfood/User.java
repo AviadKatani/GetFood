@@ -1,3 +1,6 @@
+/**
+ * User class is responsible to contain the full information about users.
+ */
 package aviadapps.getfood;
 
 /**

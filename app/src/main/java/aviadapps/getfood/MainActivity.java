@@ -1,3 +1,6 @@
+/**
+ * This is the main activity which lets the user choose the wanted action.
+ */
 package aviadapps.getfood;
 
 import android.content.Intent;
@@ -63,19 +66,14 @@ public class MainActivity extends AppCompatActivity {
         i = new Intent(this, OrderActivity.class);
         i.putExtra("userName", userName);
         startActivity(i);
-        // TODO: Move to order activity
     }
-
 
     public void historyClicked(View view) {
         i = new Intent(this, HistoryActivity.class);
         i.putExtra("userName", userName);
         startActivity(i);
-        // TODO: Move to order history activity
     }
 
-
     public void helpClicked(View view) {
-        // TODO: Move to help activity
     }
 }

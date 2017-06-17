@@ -1,3 +1,6 @@
+/**
+ * This activity contains the full order information just before proccessing the order.
+ */
 package aviadapps.getfood;
 
 import android.content.Intent;

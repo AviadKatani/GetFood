@@ -1,3 +1,6 @@
+/**
+ * This activity focused on register users to the database for the first time
+ */
 package aviadapps.getfood;
 
 import android.app.Activity;

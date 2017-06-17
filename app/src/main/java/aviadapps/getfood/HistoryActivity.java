@@ -1,3 +1,6 @@
+/**
+ * This activity retrieves the History data from the database and display it to the user
+ */
 package aviadapps.getfood;
 
 import android.support.v7.app.AppCompatActivity;

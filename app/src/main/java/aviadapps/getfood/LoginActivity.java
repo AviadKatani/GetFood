@@ -1,3 +1,6 @@
+/**
+ * This activity focus on checking the user account details on the database and log the user if succeed.
+ */
 package aviadapps.getfood;
 
 import android.app.Activity;

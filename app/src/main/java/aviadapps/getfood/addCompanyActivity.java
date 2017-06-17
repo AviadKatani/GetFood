@@ -1,3 +1,6 @@
+/**
+ * This activity focused on getting info from user about a company and add it to the database.
+ */
 package aviadapps.getfood;
 
 import android.content.Intent;

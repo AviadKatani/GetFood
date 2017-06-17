@@ -1,3 +1,6 @@
+/**
+ * This activity contains all the companies registered on the database and allows to order from them.
+ */
 package aviadapps.getfood;
 
 import android.content.Context;

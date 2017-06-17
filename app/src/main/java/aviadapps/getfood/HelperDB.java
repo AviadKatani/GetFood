@@ -1,3 +1,6 @@
+/**
+ * This class is neccesary for the Database use and contains methods for add / retrieve information from DB.
+ */
 package aviadapps.getfood;
 
 import android.content.ContentValues;

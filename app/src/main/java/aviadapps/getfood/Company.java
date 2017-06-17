@@ -1,3 +1,6 @@
+/**
+ * Company class is responsible to contain the full information about company.
+ */
 package aviadapps.getfood;
 
 import java.util.HashMap;
