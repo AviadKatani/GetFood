@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class addCompanyActivity extends AppCompatActivity {
     String companyName, companyEmail, companyPhone, companyMenu, companyAddress;
@@ -45,6 +46,7 @@ public class addCompanyActivity extends AppCompatActivity {
             Company company = new Company(0, companyName, companyPhone, companyEmail, companyAddress, companyMenu);
             HelperDB db = new HelperDB(this);
             db.addCompany(company);
+            Toast.makeText(this, "Thanks, your company: " + companyName + " has been added!", Toast.LENGTH_SHORT).show();
         }
     }
 
