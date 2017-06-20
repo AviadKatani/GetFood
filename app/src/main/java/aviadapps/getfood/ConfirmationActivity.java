@@ -92,6 +92,4 @@ public class ConfirmationActivity extends AppCompatActivity {
         orderInfoIntent = new Intent(ConfirmationActivity.this, OrderActivity.class);
         startActivity(orderInfoIntent);
     }
-
-
 }

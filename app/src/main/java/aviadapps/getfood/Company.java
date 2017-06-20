@@ -3,9 +3,6 @@
  */
 package aviadapps.getfood;
 
-import java.util.HashMap;
-import java.util.List;
-
 /**
  * Created by Aviad on 17/01/2017.
  */

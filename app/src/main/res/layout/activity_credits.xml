@@ -3,14 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="aviadapps.getfood.CreditsActivity">
 
     <TextView
-        android:id="@+id/creditsTV"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Credits:" />
+        android:textSize="28sp"
+        android:textColor="#0066CC"
+        android:text="App Credits:" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:textColor="#99CCFF"
+        android:text="Thanks to Itsik Ben Shitrit for teaching the Java language" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:textColor="#3333FF"
+        android:text="Thanks to Albert Levy for teaching Android Development and being there for us!" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:textColor="#FFFF99"
+        android:text="A big thanks for all Cyber Class 2017 for a great time and memories!" />
 
 </LinearLayout>
