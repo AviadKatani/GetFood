@@ -15,7 +15,7 @@ import java.util.List;
 public class HelperDB extends SQLiteOpenHelper {
     SQLiteDatabase db;
     public static final int DATABASE_VERSION = 1;
-    public static final String DB_NAME = "userdbc2c.db"; // Database file name
+    public static final String DB_NAME = "userdba.db"; // Database file name
     public static final String TABLE_USERS = "Users";
     public static final String TABLE_COMPANY = "Company";
     // All of the database keys:
@@ -55,11 +55,11 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate += KEY_PHONE + " TEXT, ";
         strCreate += KEY_MENU + " TEXT" + ")";
         db.execSQL(strCreate); // Company database created
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (1,'Aroma','aviadkatani@gmail.com', '050-743-2010', 'TestAromaMenu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (2,'Pizza Hut','aviadkatani@gmail.com', '050-743-2010', 'TestPizzaHutMenu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'Dominos','aviadkatani@gmail.com', '050-743-2010', 'TestDominosMenu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (4,'McDonalds','aviadkatani@gmail.com', '050-743-2010', 'TestMcDonaldsMenu')");
-        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (5,'BBB','aviadkatani@gmail.com', '050-743-2010', 'TestBBBMenu')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (1,'Aroma','aviadkatani@gmail.com', '050-743-2010', 'Rogalah - 2.5₪, Fruit Juice - 2₪, Chocholate - 2₪, Coffe - 2₪, Shoko - 2.5₪, Sandwich - 5₪')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (2,'Pizza Hut','aviadkatani@gmail.com', '050-743-2010', 'Small Pizza - 15₪, Normal Pizza - 20₪, Big Pizza - 30₪, Huge Pizza - 40₪, Salad - 3₪')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (3,'Dominos','aviadkatani@gmail.com', '050-743-2010', 'Small Pizza - 10₪, Normal Pizza - 25₪, Big Pizza - 25₪, Huge Pizza - 30₪, Salad - 4₪')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (4,'McDonalds','aviadkatani@gmail.com', '050-743-2010', 'McRoyal - 5₪, McKebab - 8₪, Coca-Cola - 7₪, Hamburger - 4₪, Small Chips - 4₪, Big Chips - 5₪')");
+        db.execSQL("INSERT INTO Company (_id,'Name','Email','Phone','Menu') Values (5,'BBB','aviadkatani@gmail.com', '050-743-2010', 'Small Burger - 3₪, Normal Burger - 5₪, Big Burger - 10₪, Huge Burger - 15₪, Chips - 10₪, Cola - 8₪')");
 
     }
 

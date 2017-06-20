@@ -111,7 +111,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.06"
+        android:layout_weight="0.00"
         android:orientation="horizontal">
 
         <TextView
@@ -138,12 +138,10 @@
         android:onClick="addCompany"
         android:text="Add Company" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-    </LinearLayout>
+        android:text="Note: Please separate each item on your menu with ',' \n for example: Pizza - 3.5₪, Hamburger - 4.8₪, etc" />
 
 </LinearLayout>

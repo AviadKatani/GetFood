@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             pass = userPassword.getText().toString();
 
             String password = db.searchPass(user);
+            System.out.println("We've got it. " + password);
             if (pass.equals(password)) {
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 i.putExtra("userName", user);
@@ -134,8 +135,8 @@ public class LoginActivity extends AppCompatActivity {
         }
         @Override
         protected String doInBackground(String... params) {
-            String urlAddress = "https://api.elasticemail.com/v2/email/send", apiKey = "757b3598-2532-4286-94e3-d7d42247a390", subject = "GetFood - Your password",
-                    from = "aviadkatani@gmail.com", encoding = "UTF-8", to = params[0], body = "Your current password is:  " + params[1];
+            String urlAddress = "https://api.elasticemail.com/v2/email/send", apiKey = "a7fd0c45-3918-448a-becc-f004e4fe6c57", subject = "GetFood - Your password",
+                    from = "aviadphone@gmail.com", encoding = "UTF-8", to = params[0], body = "Your current password is:  " + params[1];
             HttpURLConnection urlConnection;
             try {
                 String data = "apikey=" + URLEncoder.encode(apiKey, encoding);
@@ -155,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                 String result = rd.readLine();
                 wr.close();
                 rd.close();
-                Log.e("LoginActivity", "URL Connected: " + urlAddress + "Data is: " + data);
+                Log.e("LoginActivity", "URL Connected: " + urlAddress + "Data is: " + data + "KNOW THAT: " + wr.getEncoding());
                 return result;
             } catch(IOException e) {
                 e.printStackTrace();
